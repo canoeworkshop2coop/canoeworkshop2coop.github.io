@@ -119,33 +119,53 @@ a:hover { text-decoration: underline;}
     color: #000;
 }
 
-/* 移动端适配：屏幕较窄时缩小一点或调整位置 */
+/* --- 移动端适配：顶部粉色流式布局 --- */
 @media screen and (max-width: 640px) {
     #article_side_list {
-        top: 80px;
-        right: 5px;
+        /* 定位：恢复文档流，显示在标题下方 */
+        position: relative; 
+        top: auto;
+        right: auto;
+        
+        /* 布局：居中 */
+        width: 92%;
+        margin: 10px auto 15px auto; 
+        
+        /* 视觉：粉色背景 (255, 192, 203 是粉色RGB)，行距紧凑 */
+        background-color: rgba(255, 0, 120, 0.85); 
+        border-radius: 8px;
+        padding: 10px 12px; /* 内边距稍微缩小 */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        
+        /* 文字排版 */
+        line-height: 1.4; /* 行距设为1.4，比较紧凑 */
+        text-align: left; /* 文字左对齐 */
     }
+
+    /* 链接样式重置：让它们连在一起 */
     .article_item {
-        padding: 5px 8px;
-        font-size: 12px;
-        background-color: rgba(255, 255, 255, 0.7); /* 移动端背景稍微实一点以保证阅读 */
+        display: inline; /* 关键：改为行内元素，不再独占一行 */
+        background-color: transparent; 
+        color: #175bb1; 
+        border: none; /* 去掉底部分割线 */
+        padding: 0;   /* 去掉多余内边距 */
+        margin: 0;    /* 去掉外边距 */
+        font-weight: bold;
+        font-size: 13px; /* 字体稍微改小一点点适应密集排版 */
     }
-}
-.pdf-download-link {
-  margin-left: 8px; /* 与前面文字的间距 */
-  font-size: 0.9em; /* 字体大小可以略小 */
-  color: #007bff; /* 链接颜色 */
-  text-decoration: none; /* 移除下划线 */
-}
+    
+    /* 给每个链接后面加一个小间隔，防止粘在一起 */
+    .article_item::after {
+        content: " "; /* 加一个空格 */
+        margin-right: 5px; 
+    }
 
-.pdf-download-link:hover {
-  text-decoration: underline; /* 鼠标悬停时显示下划线 */
-}
-
-/* 如果需要图标，可以使用伪元素或嵌入SVG/图片 */
-.pdf-download-link::before {
-  content: "⬇️"; /* 或者其他下载图标 */
-  margin-right: 4px;
+    /* 针对下载链接的微调 */
+    .pdf-download-link {
+        display: inline; /* 也要变成行内 */
+        margin-left: 2px;
+        margin-right: 8px; /* 下载链接后多留点空隙 */
+    }
 }
 
 </style>
@@ -153,6 +173,31 @@ a:hover { text-decoration: underline;}
 <body>
 	<h1>众筹的造船工作坊 (6.20-7.20,2025,武汉)</h1>
 	<h2>CANOE WORKSHOP TOWARDS COOP</h2>
+
+<div id="article_side_list">
+    <a href="https://fuyininfo.github.io/post/250606canoe-workshop/" class="article_item">#众筹：我们要用20天造艘船！| 一起做CANOE的工作坊</a>
+    <a href="https://mp.weixin.qq.com/s/bACqpHbplIZOel0fxmwVcg" class="article_item">#造船工作坊系列活动之募资巡映：《路上行舟》！</a>
+    <a href="doc/02screening.htm" class="pdf-download-link">[巡映备份]</a>
+    <a href="https://www.instagram.com/p/DLBzJ6eM5hb/" class="article_item">#路上行舟在Accent Sisters NYC巡映</a>
+
+<a href="https://mp.weixin.qq.com/s/hltAkhnZV10AUre6vHn3BA" class="article_item">#造船工作坊马上要开工啦，感谢诸君的爱</a>
+<a href="doc/03ready2go.htm" class="pdf-download-link">[开工备份]</a>
+<a href="https://mp.weixin.qq.com/s/gyQyAbJMN28KADgqaxJTBw" class="article_item">#造船第一天，大吉大利</a>
+<a href="doc/04firstday.htm" class="pdf-download-link">[第一天备份]</a>
+<a href="https://mp.weixin.qq.com/s/D5bKsaNA-d_sTmPXp39rJQ" class="article_item">#造船工作坊手工tee第一弹限量发售</a>
+<a href="doc/04firstday.htm" class="pdf-download-link">[tee备份]</a>
+<a href="https://mp.weixin.qq.com/s/uH-76F7tyoVc-NxgCJdY6g" class="article_item">#造船工坊广告位招募中</a>
+<a href="doc/06ads.htm" class="pdf-download-link">[广告位备份]</a>
+<a href="https://mp.weixin.qq.com/s/qKlxUv2S90veB3A-yzzt-g" class="article_item">#造船工作坊：好船下好水，暨今夏特款水上救生衣发布会</a>
+<a href="doc/07intowater.htm" class="pdf-download-link">[下水备份]</a>
+<a href="https://fuyininfo.github.io/post/250910-from-the-river-to-the-sea/" class="article_item">#造好船了！我们准备顺流而下！</a>
+
+    <a href="https://www.wuhan.gov.cn/sy/whyw/202507/t20250708_2617316.shtml" class="article_item">#长江日报：武汉年轻人众筹造独木舟，准备沿长江划船去上海</a>
+    <a href="doc/changjiangribao.pdf" class="pdf-download-link">[长江日报报道备份]</a>
+    <a href="https://mp.weixin.qq.com/s/BE2Z0i2x4R5ZlMWQGvQ3ZQ" class="article_item">#优良better：当一群野生船匠决定造船出「海」</a>
+    <a href="doc/better.htm" class="pdf-download-link">[优良better报道备份]</a>
+    </div>
+
 <div id="fade" class="black_overlay"></div>
 <div id="light" class="white_content" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"><img id="f_pic" src="" style="margin-top:0;" /><div id="l_c" onclick="prev();">&lt;</div><div id="r_c" onclick="next();">&gt;</div></div>
 <div id="list">
@@ -4660,29 +4705,6 @@ a:hover { text-decoration: underline;}
 </div>
 <div id="wz"></div>
 
-<div id="article_side_list">
-    <a href="https://fuyininfo.github.io/post/250606canoe-workshop/" class="article_item">#众筹：我们要用20天造艘船！| 一起做CANOE的工作坊</a>
-    <a href="https://mp.weixin.qq.com/s/bACqpHbplIZOel0fxmwVcg" class="article_item">#造船工作坊系列活动之募资巡映：《路上行舟》！</a>
-    <a href="doc/02screening.htm" class="pdf-download-link">[巡映备份]</a>
-    <a href="https://www.instagram.com/p/DLBzJ6eM5hb/" class="article_item">#路上行舟在Accent Sisters NYC巡映</a>
-
-<a href="https://mp.weixin.qq.com/s/hltAkhnZV10AUre6vHn3BA" class="article_item">#造船工作坊马上要开工啦，感谢诸君的爱</a>
-<a href="doc/03ready2go.htm" class="pdf-download-link">[开工备份]</a>
-<a href="https://mp.weixin.qq.com/s/gyQyAbJMN28KADgqaxJTBw" class="article_item">#造船第一天，大吉大利</a>
-<a href="doc/04firstday.htm" class="pdf-download-link">[第一天备份]</a>
-<a href="https://mp.weixin.qq.com/s/D5bKsaNA-d_sTmPXp39rJQ" class="article_item">#造船工作坊手工tee第一弹限量发售</a>
-<a href="doc/04firstday.htm" class="pdf-download-link">[tee备份]</a>
-<a href="https://mp.weixin.qq.com/s/uH-76F7tyoVc-NxgCJdY6g" class="article_item">#造船工坊广告位招募中</a>
-<a href="doc/06ads.htm" class="pdf-download-link">[广告位备份]</a>
-<a href="https://mp.weixin.qq.com/s/qKlxUv2S90veB3A-yzzt-g" class="article_item">#造船工作坊：好船下好水，暨今夏特款水上救生衣发布会</a>
-<a href="doc/07intowater.htm" class="pdf-download-link">[下水备份]</a>
-<a href="https://fuyininfo.github.io/post/250910-from-the-river-to-the-sea/" class="article_item">#造好船了！我们准备顺流而下！</a>
-
-    <a href="https://www.wuhan.gov.cn/sy/whyw/202507/t20250708_2617316.shtml" class="article_item">#长江日报：武汉年轻人众筹造独木舟，准备沿长江划船去上海</a>
-    <a href="doc/changjiangribao.pdf" class="pdf-download-link">[长江日报报道备份]</a>
-    <a href="https://mp.weixin.qq.com/s/BE2Z0i2x4R5ZlMWQGvQ3ZQ" class="article_item">#优良better：当一群野生船匠决定造船出「海」</a>
-    <a href="doc/better.htm" class="pdf-download-link">[优良better报道备份]</a>
-    </div>
 
 <div id="nav_ctrl">
     <div class="nav_btn" onclick="scrollToTop()">顶端</div>
