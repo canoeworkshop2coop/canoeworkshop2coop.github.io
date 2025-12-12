@@ -46,7 +46,43 @@ a:hover { text-decoration: underline;}
 .com img{width:1rem;vertical-align:top;margin:0 0.1rem;margin-top:0.3rem;}
 .com span{color:#175bb1;}
 .black_overlay{display: none;position: absolute;width: 100%;height: 100%;background-color:rgba(0,0,0,0.95);z-index: 1001;}
-.white_content{display:none;position:fixed;width:100%;height:100%;z-index:1002;overflow:auto;text-align:center;align-items: center;margin:0 auto;background-position: center;center;background-size:100%;background-repeat:no-repeat;}
+
+/* --- 图片查看器容器：改为 Flex 居中布局 --- */
+.white_content {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1002;
+    overflow: hidden; /* 防止图片过大出现滚动条 */
+    
+    /* 关键：使用 Flexbox 让内容绝对居中 */
+    display: none; /* 默认隐藏，JS会改为 flex */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: transparent; /* 背景色交给遮罩层 */
+}
+/* 即使使用了 Flex，也要确保 JS 切图时能正确覆盖 display 属性 */
+.white_content[style*="display: block"] {
+    display: flex !important;
+}
+/* --- 图片本体样式 --- */
+#f_pic {
+    max-width: 95%;  /* 留一点边距 */
+    max-height: 95%; /* 留一点边距 */
+    width: auto;     /* 保持比例 */
+    height: auto;    /* 保持比例 */
+    margin: 0;       /* 去掉所有 margin */
+    object-fit: contain; /* 确保图片完整显示在容器内 */
+    
+    /* 增加一点阴影让图片更立体 */
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
 #f_pic{margin:0 auto;max-width:640px;width:100%;}
 #l_c{display:block;position:fixed;left:0;top:50%;padding:1rem;color:#fff;background:rgba(255,255,255,0.3);font-size:2rem;line-height:4rem;z-index:9999;}
 #r_c{display:block;position:fixed;right:0;top:50%;padding:1rem;color:#fff;background:rgba(255,255,255,0.3);;font-size:2rem;line-height:4rem;z-index:9999;}
@@ -4746,25 +4782,19 @@ function AddImgClickEvent()
 		}
 	}
 }
+
 function xzpic()
 {
-	document.getElementById('f_pic').style.marginTop=0+"px";
-	var windowW = document.documentElement.clientWidth;
-	if(windowW>640){
-		windowW=640;
-	}
-	var windowH = document.documentElement.clientHeight;
-	var realWidth = document.getElementById('f_pic').naturalWidth;
-	var realHeight = document.getElementById('f_pic').naturalHeight;
-	var n_h=realHeight*windowW/realWidth;
-	if(n_h<windowH){
-		document.getElementById('f_pic').style.marginTop=((windowH-n_h)/2)+ 'px';
-	}else{
-		document.getElementById('f_pic').style.marginTop=0+"px";
-	}
-	document.getElementById('light').style.display='block';
-	document.getElementById('fade').style.display='block'
+    // 只需要显示出来，CSS 会自动把它居中
+    // 注意：这里显式设置为 'flex' 以配合 CSS 的居中逻辑
+    document.getElementById('light').style.display = 'flex';
+    document.getElementById('fade').style.display = 'block';
+    
+    // 清空可能残留的 margin 样式，防止干扰
+    document.getElementById('f_pic').style.marginTop = "";
 }
+
+
 AddImgClickEvent();
 function boxClickEvent()
 {
